@@ -81,9 +81,9 @@ class AnchorApp {
                 i18n.es.defaultMsg4
             ],
             images: [
-                "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=800&q=80"
+                "https://raw.githubusercontent.com/FaustoSoftware/Kento/refs/heads/main/photos/bebe.jpg",
+                "https://plus.unsplash.com/premium_photo-1677269242094-f549ac0ebaed?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0",
+                "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop",
             ]
         };
 
