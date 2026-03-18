@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kento - 12 Exploraciones de Calma</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* === PALETA DE COLORES === */
+        :root {
+            --luz-infinita: #FFFFFF;
+            --cielo-bruma: #F0F8FF;
+            --oceano-pacifico: #A2D2E6;
+            --bruma-marina: #BFDAF0;
+            --nube-suave: #E6F0F8;
+            --arena-calma: #F5E6DC;
+            --sombra-de-mar: #555555;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            color: var(--sombra-de-mar);
+        }
+
+        body {
+            background-color: var(--luz-infinita);
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .header-section {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-weight: 700;
+            color: var(--oceano-pacifico);
+            margin-bottom: 15px;
+            font-size: 2.5rem;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        /* Base Card */
+        .mockup-card {
+            width: 300px;
+            height: 480px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .mockup-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .mockup-header {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .mockup-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* =========================================
+           1. Soft Bubble
+           ========================================= */
+        .style-nube {
+            background-color: var(--cielo-bruma);
+            border-radius: 40px;
+        }
+        .style-nube .inner-card {
+            background-color: var(--luz-infinita);
+            border-radius: 30px;
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(162, 210, 230, 0.25);
+            margin-bottom: auto;
+        }
+        .style-nube .btn {
+            background-color: var(--oceano-pacifico);
+            color: var(--luz-infinita);
+            border: none;
+            padding: 15px 0;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* =========================================
+           2. Zen Japonés
+           ========================================= */
+        .style-zen {
+            background-color: var(--luz-infinita);
+            border: 1px solid var(--nube-suave);
+            border-radius: 12px;
+        }
+        .style-zen .inner-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: auto;
+            padding: 20px 10px;
+        }
+        .style-zen .divider {
+            width: 40px; height: 1px; background-color: var(--arena-calma); margin: 20px 0;
+        }
+        .style-zen .btn {
+            background-color: transparent;
+            border: 1px solid var(--nube-suave);
+            padding: 12px 0;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* =========================================
+           3. Glassmorphism
+           ========================================= */
+        .style-fluid {
+            background-color: var(--cielo-bruma);
+            border-radius: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        .style-fluid::before {
+            content: ''; position: absolute; top: -20px; left: -20px; width: 150px; height: 150px;
+            background-color: var(--arena-calma); border-radius: 50%; z-index: -1; opacity: 0.8; filter: blur(20px);
+        }
+        .style-fluid .glass-card {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 24px; padding: 25px 20px; margin-bottom: auto;
+        }
+        .style-fluid .btn {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            padding: 15px 0; border-radius: 24px; font-weight: 700; cursor: pointer; width: 100%;
+        }
+
+        /* =========================================
+           4. Neumorfismo Suave
+           ========================================= */
+        .style-neumorph {
+            background-color: var(--nube-suave);
+            border-radius: 30px;
+            box-shadow: 10px 10px 20px rgba(162, 210, 230, 0.4), -10px -10px 20px #FFFFFF;
+        }
+        .style-neumorph .inner-card { padding: 20px; margin-bottom: auto; }
+        .style-neumorph .btn {
+            background-color: var(--nube-suave); color: var(--oceano-pacifico);
+            border: none; padding: 15px 0; border-radius: 50px; font-weight: 700; cursor: pointer; width: 100%;
+            box-shadow: 6px 6px 12px rgba(162, 210, 230, 0.4), -6px -6px 12px #FFFFFF;
+        }
+
+        /* =========================================
+           5. Orgánico (Pebble)
+           ========================================= */
+        .style-organic {
+            background-color: var(--luz-infinita);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            border: 2px solid var(--nube-suave);
+            padding: 50px 30px;
+        }
+        .style-organic .inner-card { margin-bottom: auto; margin-top: 20px; }
+        .style-organic .btn {
+            background-color: var(--arena-calma); border: none; padding: 15px 0;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; font-weight: 700; cursor: pointer; width: 100%;
+        }
+
+        /* =========================================
+           6. Aura Etérea
+           ========================================= */
+        .style-aura {
+            background-color: var(--luz-infinita); border-radius: 30px;
+            background: radial-gradient(circle at top left, var(--cielo-bruma), transparent 60%),
+                        radial-gradient(circle at bottom right, var(--arena-calma), transparent 60%);
+            box-shadow: 0 10px 30px rgba(162, 210, 230, 0.15);
+        }
+        .style-aura .inner-card { margin-bottom: auto; padding: 20px; }
+        .style-aura .btn {
+            background: linear-gradient(135deg, var(--oceano-pacifico), var(--bruma-marina));
+            color: var(--luz-infinita); border: none; padding: 15px 0; border-radius: 50px; font-weight: 700; cursor: pointer; width: 100%;
+        }
+
+        /* =========================================
+           7. Line Art / Ligereza Absoluta
+           ========================================= */
+        .style-lineart {
+            background-color: var(--luz-infinita);
+            border: 1px solid var(--oceano-pacifico);
+            border-radius: 20px;
+        }
+        .style-lineart .inner-card { margin-bottom: auto; padding: 20px; }
+        .style-lineart .btn {
+            background-color: transparent; color: var(--oceano-pacifico);
+            border: 1px solid var(--oceano-pacifico); padding: 15px 0; border-radius: 20px; font-weight: 700; cursor: pointer; width: 100%;
+        }
+
+        /* =========================================
+           8. Papel Flotante
+           ========================================= */
+        .style-floating {
+            background-color: var(--cielo-bruma);
+            border-radius: 16px;
+        }
+        .style-floating .inner-card {
+            background-color: var(--luz-infinita);
+            border-radius: 12px; padding: 30px 20px; margin-bottom: auto;
+            box-shadow: 0 20px 40px rgba(162, 210, 230, 0.2);
+            transform: translateY(-10px);
+        }
+        .style-floating .btn {
+            background-color: var(--luz-infinita); color: var(--oceano-pacifico);
+            border: none; padding: 15px 0; border-radius: 8px; font-weight: 700; cursor: pointer; width: 100%;
+            box-shadow: 0 4px 10px rgba(162, 210, 230, 0.2);
+        }
+
+        /* =========================================
+           9. Inmersión Profunda
+           ========================================= */
+        .style-immersion {
+            background-color: var(--oceano-pacifico);
+            border-radius: 30px;
+        }
+        .style-immersion * { color: var(--luz-infinita); } /* Fuerza el texto a blanco */
+        .style-immersion .inner-card { margin-bottom: auto; padding: 20px; }
+        .style-immersion .btn {
+            background-color: var(--luz-infinita); color: var(--oceano-pacifico);
+            border: none; padding: 15px 0; border-radius: 50px; font-weight: 700; cursor: pointer; width: 100%;
+        }
+
+        /* =========================================
+           10. Aurora Mesh (Gradiente Suave)
+           ========================================= */
+        .style-mesh {
+            background-color: var(--cielo-bruma);
+            border-radius: 30px;
+            background-image: 
+                radial-gradient(at 0% 0%, var(--arena-calma) 0px, transparent 60%), 
+                radial-gradient(at 100% 0%, var(--bruma-marina) 0px, transparent 60%), 
+                radial-gradient(at 100% 100%, var(--cielo-bruma) 0px, transparent 60%);
+        }
+        .style-mesh .inner-card { margin-bottom: auto; padding: 20px; }
+        .style-mesh .btn {
+            background: rgba(255, 255, 255, 0.7); color: var(--sombra-de-mar);
+            border: none; padding: 15px 0; border-radius: 50px; font-weight: 700; cursor: pointer; width: 100%;
+        }
+
+        /* =========================================
+           11. Editorial Sereno (Texto Izquierda)
+           ========================================= */
+        .style-editorial {
+            background-color: var(--luz-infinita);
+            border-radius: 0 30px 30px 0; /* Asimetría elegante */
+            border-left: 6px solid var(--arena-calma);
+            box-shadow: 5px 5px 20px rgba(0,0,0,0.03);
+            align-items: flex-start; /* Todo alineado a la izquierda */
+        }
+        .style-editorial .mockup-header, .style-editorial .mockup-text { text-align: left; }
+        .style-editorial .inner-card { margin-bottom: auto; padding: 10px 0; }
+        .style-editorial .btn {
+            background-color: transparent; color: var(--sombra-de-mar);
+            border: none; border-bottom: 2px solid var(--oceano-pacifico); padding: 10px 0; border-radius: 0; font-weight: 700; cursor: pointer; width: fit-content;
+        }
+
+        /* =========================================
+           12. Eco / Terra (Calidez)
+           ========================================= */
+        .style-eco {
+            background-color: var(--arena-calma); /* Uso del color cálido como fondo */
+            border-radius: 30px;
+        }
+        .style-eco .inner-card {
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 20px; padding: 20px; margin-bottom: auto;
+        }
+        .style-eco .btn {
+            background-color: var(--sombra-de-mar); color: var(--luz-infinita);
+            border: none; padding: 15px 0; border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header-section">
+        <h1>Galería Kento: 12 Estados de Calma</h1>
+        <p>Una exploración visual de la paz mental a través del color, la forma, la luz y la estructura.</p>
+    </div>
+
+    <div class="container">
+        
+        <div class="mockup-card style-nube">
+            <h2 class="mockup-header">1. Soft Bubble</h2>
+            <div class="inner-card">
+                <p class="mockup-text">Como almohadas o nubes. Bordes exageradamente redondos para protección total.</p>
+            </div>
+            <button class="btn">Respirar</button>
+        </div>
+
+        <div class="mockup-card style-zen">
+            <h2 class="mockup-header">2. Zen Japonés</h2>
+            <div class="inner-content">
+                <p class="mockup-text">Menos es más. Espacios vacíos para que la mente pueda descansar.</p>
+                <div class="divider"></div>
+            </div>
+            <button class="btn">Respirar</button>
+        </div>
+
+        <div class="mockup-card style-fluid">
+            <h2 class="mockup-header">3. Glassmorphism</h2>
+            <div class="glass-card">
+                <p class="mockup-text">Cristales empañados translúcidos que dejan ver el fondo suavemente.</p>
+            </div>
+            <button class="btn">Respirar</button>
+        </div>
+
+        <div class="mockup-card style-neumorph">
+            <h2 class="mockup-header">4. Neumorfismo</h2>
+            <div class="inner-card">
+                <p class="mockup-text">Táctil y cercano. Elementos esculpidos suavemente en la misma superficie.</p>
+            </div>
+            <button class="btn">Respirar</button>
+        </div>
+
+        <div class="mockup-card style-organic">
+            <h2 class="mockup-header">5. Orgánico</h2>
+            <div class="inner-card">
+                <p class="mockup-text">Formas imperfectas, inspiradas en piedras de río erosionadas por el agua.</p>
+            </div>
+            <button class="btn">Respirar</button>
+        </div>
+
+        <div class="mockup-card style-aura">
+            <h2 class="mockup-header">6. Aura Etérea</h2>
+            <div class="inner-card">
+                <p class="mockup-text">Luces difusas que se mezclan como si la pantalla estuviera inhalando.</p>
+            </div>
+            <button class="btn">Respirar</button>
+        </div>
+
+        <div class="mockup-card style-lineart">
+            <h2 class="mockup-header">7. Line Art</h2>
+            <div class="inner-card">
+                <p class="mockup-text">Ligereza absoluta. Sin rellenos visuales pesados, solo líneas finas y aire.</p>
+            </div>
+            <button class="btn">Respirar</button>
+        </div>
+
+        <div class="mockup-card style-floating">
+            <h2 class="mockup-header">8. Papel Flotante</h2>
+            <div class="inner-card">
+                <p class="mockup-text">Capas que flotan suavemente. Genera profundidad y estructura sin tensión.</p>
+            </div>
+            <button class="btn">Respirar</button>
+        </div>
+
+        <div class="mockup-card style-immersion">
+            <h2 class="mockup-header">9. Inmersión</h2>
+            <div class="inner-card">
+                <p class="mockup-text">Sumérgete. El color profundo del océano Pacífico actúa como un abrazo visual seguro.</p>
+            </div>
+            <button class="btn">Respirar</button>
+        </div>
+
+        <div class="mockup-card style-mesh">
+            <h2 class="mockup-header">10. Aurora Mesh</h2>
+            <div class="inner-card">
+                <p class="mockup-text">Los colores de la paleta se funden en una bruma continua y fluida.</p>
+            </div>
+            <button class="btn">Respirar</button>
+        </div>
+
+        <div class="mockup-card style-editorial">
+            <h2 class="mockup-header">11. Editorial Sereno</h2>
+            <div class="inner-card">
+                <p class="mockup-text">Como una revista de bienestar. Estructurado, asimétrico y muy respirable.</p>
+            </div>
+            <button class="btn">Respirar</button>
+        </div>
+
+        <div class="mockup-card style-eco">
+            <h2 class="mockup-header">12. Eco / Terra</h2>
+            <div class="inner-card">
+                <p class="mockup-text">Uso del tono "Arena Calma" para conectar con la tierra, aportando calidez y refugio.</p>
+            </div>
+            <button class="btn">Respirar</button>
+        </div>
+
+    </div>
+
+</body>
+</html>

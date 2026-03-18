@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kento - Exploración Visual</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* === PALETA DE COLORES (Variables CSS) === */
+        :root {
+            --luz-infinita: #FFFFFF;
+            --cielo-bruma: #F0F8FF;
+            --oceano-pacifico: #A2D2E6;
+            --bruma-marina: #BFDAF0;
+            --nube-suave: #E6F0F8;
+            --arena-calma: #F5E6DC;
+            --sombra-de-mar: #555555;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            color: var(--sombra-de-mar);
+        }
+
+        body {
+            background-color: var(--luz-infinita);
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: 700;
+            color: var(--oceano-pacifico);
+            margin-bottom: 10px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* Base para las tarjetas de muestra */
+        .mockup-card {
+            width: 320px;
+            height: 500px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 20px;
+            overflow: hidden;
+        }
+
+        .mockup-header {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .mockup-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        /* =========================================
+           ESTILO 1: Nube / Soft Bubble
+           ========================================= */
+        .style-nube {
+            background-color: var(--cielo-bruma);
+            border-radius: 40px; /* Bordes exageradamente redondeados */
+        }
+
+        .style-nube .inner-card {
+            background-color: var(--luz-infinita);
+            border-radius: 30px;
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(162, 210, 230, 0.25); /* Sombra difusa casi invisible */
+            margin-bottom: auto;
+        }
+
+        .style-nube .btn {
+            background-color: var(--oceano-pacifico);
+            color: var(--luz-infinita);
+            border: none;
+            padding: 15px 0;
+            border-radius: 50px; /* Cápsula completa */
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s;
+        }
+
+        .style-nube .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* =========================================
+           ESTILO 2: Zen / Minimalismo Japonés
+           ========================================= */
+        .style-zen {
+            background-color: var(--luz-infinita);
+            border: 1px solid var(--nube-suave);
+            border-radius: 12px; /* Ligeramente redondeado */
+        }
+
+        .style-zen .inner-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 10px;
+            margin-bottom: auto;
+        }
+
+        .style-zen .divider {
+            width: 40px;
+            height: 1px;
+            background-color: var(--arena-calma);
+            margin: 20px 0;
+        }
+
+        .style-zen .btn {
+            background-color: transparent;
+            color: var(--sombra-de-mar);
+            border: 1px solid var(--nube-suave);
+            padding: 12px 0;
+            border-radius: 8px; /* Borde sutil */
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .style-zen .btn:hover {
+            background-color: var(--cielo-bruma);
+        }
+
+        /* =========================================
+           ESTILO 3: Fluid / Glassmorphism Puro
+           ========================================= */
+        .style-fluid {
+            background-color: var(--cielo-bruma);
+            border-radius: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Formas abstractas de fondo para que el cristal haga efecto */
+        .style-fluid::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 150px;
+            height: 150px;
+            background-color: var(--arena-calma);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.8;
+            filter: blur(20px);
+        }
+        
+        .style-fluid::after {
+            content: '';
+            position: absolute;
+            bottom: 20px;
+            right: -30px;
+            width: 200px;
+            height: 200px;
+            background-color: var(--bruma-marina);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.8;
+            filter: blur(25px);
+        }
+
+        .style-fluid .glass-card {
+            background: rgba(255, 255, 255, 0.45); /* Translúcido */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6); /* Borde de cristal */
+            border-radius: 24px;
+            padding: 25px 20px;
+            margin-bottom: auto;
+        }
+
+        .style-fluid .btn {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            color: var(--sombra-de-mar);
+            padding: 15px 0;
+            border-radius: 24px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .style-fluid .btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div>
+        <h1>Exploración Visual de Kento</h1>
+        <p style="text-align: center; color: var(--sombra-de-mar);">Tres enfoques para transmitir calma, usando la paleta oficial.</p>
+    </div>
+
+    <div class="container">
+        
+        <div class="mockup-card style-nube">
+            <h2 class="mockup-header">1. Soft Bubble</h2>
+            <div class="inner-card">
+                <p class="mockup-text"><strong>Hola, soy Kento.</strong><br>Todo aquí se siente como una nube. Mis bordes son redondos para que te sientas seguro y protegido.</p>
+            </div>
+            <button class="btn">Comenzar a respirar</button>
+        </div>
+
+        <div class="mockup-card style-zen">
+            <h2 class="mockup-header">2. Zen Japonés</h2>
+            <div class="inner-content">
+                <p class="mockup-text">Menos es más. Espacios en blanco para que tu mente pueda descansar sin ruido visual.</p>
+                <div class="divider"></div>
+                <p class="mockup-text" style="color: var(--oceano-pacifico); font-weight: 600;">Silencio mental.</p>
+            </div>
+            <button class="btn">Comenzar a respirar</button>
+        </div>
+
+        <div class="mockup-card style-fluid">
+            <h2 class="mockup-header">3. Glassmorphism</h2>
+            <div class="glass-card">
+                <p class="mockup-text"><strong>Fluidez y agua.</strong><br>Como cristales empañados translúcidos que dejan ver el fondo suavemente, invitando a dejar ir.</p>
+            </div>
+            <button class="btn">Comenzar a respirar</button>
+        </div>
+
+    </div>
+
+</body>
+</html>

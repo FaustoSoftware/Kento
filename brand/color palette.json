@@ -1,0 +1,33 @@
+{
+  "theme": "light",
+  "palette": {
+    "luz_infinita": {
+      "hex": "#FFFFFF",
+      "usage": "Fondo principal de la aplicación"
+    },
+    "cielo_bruma": {
+      "hex": "#F0F8FF",
+      "usage": "Fondos secundarios, tarjetas o contenedores amplios"
+    },
+    "oceano_pacifico": {
+      "hex": "#A2D2E6",
+      "usage": "Color primario de marca, botones principales (CTA)"
+    },
+    "bruma_marina": {
+      "hex": "#BFDAF0",
+      "usage": "Iconos y elementos secundarios"
+    },
+    "nube_suave": {
+      "hex": "#E6F0F8",
+      "usage": "Bordes, divisores y fondos muy sutiles"
+    },
+    "arena_calma": {
+      "hex": "#F5E6DC",
+      "usage": "Acentos, toques cálidos o notificaciones suaves"
+    },
+    "sombra_de_mar": {
+      "hex": "#555555",
+      "usage": "Texto principal, títulos y asegurar buena legibilidad"
+    }
+  }
+}

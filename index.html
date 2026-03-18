@@ -7,6 +7,10 @@
 </head>
 <body>
 
+    <!-- GLOBAL BACKGROUND -->
+    <img id="bg-image" src="" alt="Fondo" onload="this.classList.add('loaded')" onerror="this.classList.remove('loaded')">
+    <div class="overlay"></div>
+
     <div id="loading-overlay">
         <div class="spinner"></div>
         <div id="loading-text">Procesando...</div>
@@ -14,8 +18,6 @@
 
     <!-- MAIN VIEW -->
     <div id="anchor-view" class="view active" onclick="app.showNextAnchor()">
-        <img id="bg-image" src="" alt="Fondo" onload="this.classList.add('loaded')" onerror="this.classList.remove('loaded')">
-        <div class="overlay"></div>
         
         <button class="btn-settings-floating" onclick="event.stopPropagation(); app.toggleSettings()">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
@@ -31,7 +33,10 @@
     <div id="settings-view" class="view">
         <div class="settings-content">
             <div class="header-settings">
-                <h2 data-i18n="settingsTitle">Mis Bases (Kento)</h2>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img src="/logo.png" alt="Kento Logo" style="height: 150px; object-fit: contain; border-radius: 32px;">
+                    <h2 data-i18n="settingsTitle" style="margin: 0;">Mis Bases</h2>
+                </div>
                 <button class="btn-close" onclick="app.toggleSettings()">×</button>
             </div>
 
@@ -50,7 +55,9 @@
                 <p class="desc" data-i18n="phrasesDesc">Escribe recordatorios, anclas o pensamientos que te tranquilicen.</p>
                 <div class="input-row">
                     <input type="text" id="new-msg" placeholder="Ej: Respira profundo..." data-i18n-placeholder="phrasesPlaceholder">
-                    <button class="btn-add" onclick="app.addItem('messages', 'new-msg')">+</button>
+                    <button class="btn-add" onclick="app.addItem('messages', 'new-msg')">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
                 </div>
                 <ul id="list-messages"></ul>
             </div>
@@ -61,7 +68,10 @@
                 
                 <div class="input-row">
                     <div class="file-upload-wrapper">
-                        <label for="new-img-file" class="file-upload-label" id="file-upload-lbl" data-i18n="uploadLabel">📷 Seleccionar imagen del dispositivo</label>
+                        <label for="new-img-file" class="file-upload-label" id="file-upload-lbl">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="min-width: 24px;"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                            <span data-i18n="uploadLabel">Seleccionar imagen del dispositivo</span>
+                        </label>
                         <input type="file" id="new-img-file" accept="image/*" onchange="app.handleFileUpload(this)">
                     </div>
                 </div>
@@ -70,9 +80,25 @@
 
                 <div class="input-row">
                     <input type="url" id="new-img-url" placeholder="https://ejemplo.com/mifoto.jpg" data-i18n-placeholder="urlPlaceholder">
-                    <button class="btn-add" onclick="app.addItem('images', 'new-img-url')">+</button>
+                    <button class="btn-add" onclick="app.addItem('images', 'new-img-url')">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
                 </div>
                 <ul id="list-images"></ul>
+            </div>
+
+            <div class="section" style="margin-bottom: 20px;">
+                <div class="controls-row">
+                    <div>
+                        <h3 data-i18n="backupTitle">Copia de Seguridad</h3>
+                        <p class="desc" data-i18n="backupDesc" style="margin-bottom:0;">Descarga tus frases e imágenes para no perderlas.</p>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <button class="toggle-btn" onclick="app.downloadBackup()" data-i18n="backupBtn" style="white-space: nowrap;">Descargar JSON</button>
+                        <label for="restore-file" class="toggle-btn" data-i18n="restoreBtn" style="white-space: nowrap; margin: 0; text-align: center; cursor: pointer;">Restaurar JSON</label>
+                        <input type="file" id="restore-file" accept=".json" style="display: none;" onchange="app.restoreBackup(this)">
+                    </div>
+                </div>
             </div>
 
             <!-- Version Display -->

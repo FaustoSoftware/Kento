@@ -5,20 +5,39 @@
 ## The Meaning of "Kento"
 The name "Kento" reflects a "solid foundation". Just like a building needs a strong base to weather storms, our minds need anchors to remain calm during turbulent times. The application serves as this digital foundation.
 
-## Features
-- **Anchors & Reminders:** Store personal phrases of self-improvement and calmness.
-- **Visual Peace:** Upload photos from your camera roll or paste URLs of landscapes, family, or anything that brings you peace.
-- **Bilingual Interface:** Support for English and Spanish, defaulting to Spanish.
-- **Privacy-First:** All data (including uploaded images) is saved strictly in your browser's local storage. No data is sent to external servers.
-- **Accessible & Calming UI:** Designed with a distraction-free, glassmorphic dark mode to reduce visual clutter and soothe the eyes.
+## ✨ Premium Features
+- **Anchors & Reminders:** Store personal phrases of self-improvement, mindfulness, and calmness.
+- **Visual Peace:** Upload photos directly from your device's camera roll or paste image URLs that bring you peace.
+- **Advanced Glassmorphism UI:** A meticulously crafted, hardware-accelerated frosted-glass interface that adapts dynamically to brand gradients. Optimized perfectly for mobile devices to prevent browser-specific rendering artifacts (like Chrome's *edge bleeding*).
+- **Interactive Micro-Animations:** Tactile, premium interactive elements such as responsive SVG icons, soft-glow buttons, and smooth transition layers.
+- **Bilingual Interface (i18n):** Seamlessly toggle between English and Spanish.
+- **Privacy-First Architecture:** Utmost privacy is guaranteed. All data and compressed images are stored strictly in your browser's local storage (`localStorage`). Absolutely no data is transmitted to external servers.
+- **Backup & Restore System:** Safely export all your personal anchors and images to a local JSON file, allowing you to restore them on different devices or browsers at any time.
 
-## Usage
-1. Open `index.html` in any modern web browser.
-2. Tap the **gear icon** ⚙️ to access Settings.
-3. Add your favorite phrases and upload comforting images.
-4. Return to the main view. Tap the screen to randomly visualize one of your text anchors paired with a comforting background. 
+## 🚀 Usage & Deployment
+Kento has been modernized from a simple HTML script to a professional, scalable web application using **Vite**.
 
-## Technical Details
-This application operates completely offline after loading the initial HTML file. 
-- Built purely with HTML, CSS, and Vanilla JavaScript.
-- It uses the local `FileReader` API and HTML5 `<canvas>` to compress images prior to saving them in `localStorage`. This circumvents the typical 5-10MB storage limit of web browsers without losing much visual fidelity, allowing you to store many personal photos right in the site's local storage.
+### Running Locally (Development)
+You can test the application instantly via Vite:
+```bash
+npm install
+npm run dev
+```
+
+### Building for Production
+To bundle the application, run:
+```bash
+npm run build
+```
+
+### Docker deployment 🐳
+Kento is fully containerized using an ultra-lightweight **Nginx Alpine multi-stage Alpine build**. This makes hosting it on your personal server trivial:
+```bash
+docker-compose up --build -d
+```
+The app will be available instantly at `http://localhost:8080`.
+
+## 🛠 Technical Details
+- **Frontend Stack:** HTML5, modern CSS3 (Variables, Clip-paths, Hardware GPU Acceleration), and Vanilla JavaScript (ES Modules).
+- **Image Compression Engine:** Uses the HTML5 `<canvas>` API to heavily compress and resize user-uploaded images on-the-fly. This circumvents the 5-10MB `localStorage` limitations inherently found in web browsers, letting you store vast amounts of visual anchors without performance degradation.
+- **Responsive & PWA-ready layout:** Mobile-first approach built with flexible `flex` spacing.
