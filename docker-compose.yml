@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  kento-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: kento-app:local
+    ports:
+      # Map port 8080 on the host to 80 on the Nginx container
+      # This mimics Cloud Run's typical port 8080 routing
+      - "9081:80"
+    environment:
+      # PORT environment variable is commonly used in Cloud Run
+      - PORT=8080
+    restart: unless-stopped
+    # Optional but good for testing: limits the container to 512MB RAM 
+    # and 1 CPU, mimicking a standard Cloud Run gen1 instance
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
