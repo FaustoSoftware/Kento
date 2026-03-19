@@ -1,6 +1,6 @@
 {
   "name": "kento",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^8.0.0"
+    "vite": "^8.0.0",
+    "vite-plugin-pwa": "^1.2.0"
   }
 }

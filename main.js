@@ -24,7 +24,10 @@ const i18n = {
         backupTitle: "Copia de Seguridad",
         backupDesc: "Descarga tus frases e imágenes para no perderlas.",
         backupBtn: "Descargar JSON",
-        restoreBtn: "Restaurar JSON"
+        restoreBtn: "Restaurar JSON",
+        installTitle: "Instalar Aplicación",
+        installDesc: "Agrega Kento a tu pantalla de inicio para acceso rápido y sin conexión.",
+        installBtn: "Instalar Kento"
     },
     en: {
         tapHint: "Tap the screen to see another reason to be better",
@@ -49,7 +52,10 @@ const i18n = {
         backupTitle: "Backup & Export",
         backupDesc: "Download your phrases and images to keep them safe.",
         backupBtn: "Download JSON",
-        restoreBtn: "Restore JSON"
+        restoreBtn: "Restore JSON",
+        installTitle: "Install Application",
+        installDesc: "Add Kento to your home screen for faster access and offline usage.",
+        installBtn: "Install Kento"
     }
 };
 
@@ -361,5 +367,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const versionEl = document.getElementById('app-version-display');
     if (versionEl && typeof __APP_VERSION__ !== 'undefined') {
         versionEl.textContent = `v${__APP_VERSION__}`;
+    }
+});
+
+// ----- PWA Installation Prompt Logic -----
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault(); // Prevent the mini-infobar from appearing on mobile
+    deferredPrompt = e;
+    const installSection = document.getElementById('install-section');
+    if (installSection) {
+        installSection.style.display = 'block';
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const installBtn = document.getElementById('btn-install');
+    if (installBtn) {
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    document.getElementById('install-section').style.display = 'none';
+                }
+                deferredPrompt = null;
+            }
+        });
     }
 });
